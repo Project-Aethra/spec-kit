@@ -12,7 +12,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: magnon-enterprise-runners
     permissions:
       contents: write
       pull-requests: write
@@ -58,3 +58,13 @@ jobs:
           chmod +x .github/workflows/scripts/update-version.sh
           .github/workflows/scripts/update-version.sh ${{ steps.get_tag.outputs.new_version }}
 
+      - name: Generate SBOM
+        run: |
+          pip install cyclonedx-bom
+          cyclonedx-py poetry --outfile sbom.json --format json
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-${{ github.sha }}
+          path: sbom.json
+          retention-days: 90
