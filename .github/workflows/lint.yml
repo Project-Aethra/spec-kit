@@ -9,7 +9,7 @@ on:
 
 jobs:
   markdownlint:
-    runs-on: magnon-enterprise-runners
+    runs-on: magnon-enterprise-runners-magnonos
     steps:
       - name: Checkout
         uses: actions/checkout@v4

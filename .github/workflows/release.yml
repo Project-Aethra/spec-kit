@@ -12,7 +12,7 @@ on:
 
 jobs:
   release:
-    runs-on: magnon-enterprise-runners
+    runs-on: magnon-enterprise-runners-magnonos
     permissions:
       contents: write
       pull-requests: write
